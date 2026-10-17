@@ -1,0 +1,201 @@
+Pais de origen,Tipo origen,alpha3,metodo_cruce,Region,Subregion
+Alemania,País,DEU,Coincidencia automática,Europa,Europa Occidental
+Bosnia Y Herzegovina,País,BIH,Coincidencia automática,Europa,Europa Meridional
+Arabia Saudita,País,SAU,Coincidencia automática,Asia,Asia Occidental
+Argentina,País,ARG,Coincidencia automática,América,Suramérica
+Australia,País,AUS,Coincidencia automática,Oceanía,Australia y Nueva Zelanda
+Austria,País,AUT,Coincidencia automática,Europa,Europa Occidental
+Bangladesh,País,BGD,Equivalencia manual,Asia,Asia Meridional
+Bélgica,País,BEL,Coincidencia automática,Europa,Europa Occidental
+Myanmar,País,MMR,Equivalencia manual,Asia,Sudeste Asiático
+Bolivia,País,BOL,Coincidencia automática,América,Suramérica
+Brasil,País,BRA,Coincidencia automática,América,Suramérica
+Bulgaria,País,BGR,Coincidencia automática,Europa,Europa Oriental
+Camboya,País,KHM,Coincidencia automática,Asia,Sudeste Asiático
+Canadá,País,CAN,Coincidencia automática,América,Norteamérica
+Colombia,País,COL,Coincidencia automática,América,Suramérica
+Corea del Sur,País,KOR,Coincidencia automática,Asia,Asia Oriental
+Costa De Marfil,País,CIV,Coincidencia automática,África,África Occidental
+Costa Rica,País,CRI,Coincidencia automática,América,Centroamérica y México
+Croacia,País,HRV,Coincidencia automática,Europa,Europa Meridional
+Cuba,País,CUB,Coincidencia automática,América,Caribe
+Chile,País,CHL,Coincidencia automática,América,Suramérica
+China,País,CHN,Coincidencia automática,Asia,Asia Oriental
+Taiwán,País,TWN,Equivalencia manual,Sin identificar,
+Dinamarca,País,DNK,Coincidencia automática,Europa,Europa del Norte
+Ecuador,País,ECU,Coincidencia automática,América,Suramérica
+Egipto,País,EGY,Coincidencia automática,África,África del Norte
+El Salvador,País,SLV,Coincidencia automática,América,Centroamérica y México
+Emiratos Árabes Unidos,País,ARE,Coincidencia automática,Asia,Asia Occidental
+España,País,ESP,Coincidencia automática,Europa,Europa Meridional
+Eslovaquia,País,SVK,Coincidencia automática,Europa,Europa Oriental
+Eslovenia,País,SVN,Coincidencia automática,Europa,Europa Meridional
+Estados Unidos,País,USA,Coincidencia automática,América,Norteamérica
+Estonia,País,EST,Coincidencia automática,Europa,Europa del Norte
+Etiopía,País,ETH,Coincidencia automática,África,África Oriental
+Filipinas,País,PHL,Coincidencia automática,Asia,Sudeste Asiático
+Finlandia,País,FIN,Coincidencia automática,Europa,Europa del Norte
+Francia,País,FRA,Coincidencia automática,Europa,Europa Occidental
+Georgia,País,GEO,Coincidencia automática,Asia,Asia Occidental
+Grecia,País,GRC,Coincidencia automática,Europa,Europa Meridional
+Guam,País,GUM,Coincidencia automática,Oceanía,Micronesia
+Guatemala,País,GTM,Coincidencia automática,América,Centroamérica y México
+Guyana,País,GUY,Coincidencia automática,América,Suramérica
+Honduras,País,HND,Coincidencia automática,América,Centroamérica y México
+Hong Kong,País,HKG,Coincidencia automática,Asia,Asia Oriental
+Hungría,País,HUN,Coincidencia automática,Europa,Europa Oriental
+India,País,IND,Coincidencia automática,Asia,Asia Meridional
+Indonesia,País,IDN,Coincidencia automática,Asia,Sudeste Asiático
+Irlanda,País,IRL,Coincidencia automática,Europa,Europa del Norte
+Israel,País,ISR,Coincidencia automática,Asia,Asia Occidental
+Italia,País,ITA,Coincidencia automática,Europa,Europa Meridional
+Japón,País,JPN,Coincidencia automática,Asia,Asia Oriental
+Jordania,País,JOR,Coincidencia automática,Asia,Asia Occidental
+Kenia,País,KEN,Coincidencia automática,África,África Oriental
+Letonia,País,LVA,Coincidencia automática,Europa,Europa del Norte
+Liechtenstein,País,LIE,Coincidencia automática,Europa,Europa Occidental
+Lituania,País,LTU,Coincidencia automática,Europa,Europa del Norte
+Luxemburgo,País,LUX,Coincidencia automática,Europa,Europa Occidental
+Macedonia,País,MKD,Equivalencia manual,Europa,Europa Meridional
+Malaysia,País,MYS,Equivalencia manual,Asia,Sudeste Asiático
+Malta,País,MLT,Coincidencia automática,Europa,Europa Meridional
+Marruecos,País,MAR,Coincidencia automática,África,África del Norte
+Mauricio,País,MUS,Coincidencia automática,África,África Oriental
+México,País,MEX,Coincidencia automática,América,Centroamérica y México
+Nicaragua,País,NIC,Coincidencia automática,América,Centroamérica y México
+Nigeria,País,NGA,Coincidencia automática,África,África Occidental
+Noruega,País,NOR,Coincidencia automática,Europa,Europa del Norte
+Nueva Zelanda,País,NZL,Coincidencia automática,Oceanía,Australia y Nueva Zelanda
+Países Bajos,País,NLD,Coincidencia automática,Europa,Europa Occidental
+Pakistán,País,PAK,Coincidencia automática,Asia,Asia Meridional
+Panamá,País,PAN,Coincidencia automática,América,Centroamérica y México
+Paraguay,País,PRY,Coincidencia automática,América,Suramérica
+Perú,País,PER,Coincidencia automática,América,Suramérica
+Polonia,País,POL,Coincidencia automática,Europa,Europa Oriental
+Portugal,País,PRT,Coincidencia automática,Europa,Europa Meridional
+Puerto Rico,País,PRI,Coincidencia automática,América,Caribe
+Reino Unido,País,GBR,Coincidencia automática,Europa,Europa del Norte
+República Checa,País,CZE,Coincidencia automática,Europa,Europa Oriental
+República Dominicana,País,DOM,Coincidencia automática,América,Caribe
+Rumania,País,ROU,Coincidencia automática,Europa,Europa Oriental
+Rusia,País,RUS,Coincidencia automática,Europa,Europa Oriental
+Singapur,País,SGP,Coincidencia automática,Asia,Sudeste Asiático
+Sri Lanka,País,LKA,Coincidencia automática,Asia,Asia Meridional
+Sudáfrica,País,ZAF,Coincidencia automática,África,África Austral
+Suecia,País,SWE,Coincidencia automática,Europa,Europa del Norte
+Suiza,País,CHE,Coincidencia automática,Europa,Europa Occidental
+Tailandia,País,THA,Coincidencia automática,Asia,Sudeste Asiático
+Trinidad Y Tobago,País,TTO,Coincidencia automática,América,Caribe
+Tunicia,País,TUN,Equivalencia manual,África,África del Norte
+Turquía,País,TUR,Coincidencia automática,Asia,Asia Occidental
+Ucrania,País,UKR,Coincidencia automática,Europa,Europa Oriental
+Uruguay,País,URY,Coincidencia automática,América,Suramérica
+Uzbekistán,País,UZB,Coincidencia automática,Asia,Asia Central
+Venezuela,País,VEN,Coincidencia automática,América,Suramérica
+Vietnam,País,VNM,Coincidencia automática,Asia,Sudeste Asiático
+Sociedad Operadora Zona Franca Industrial de Bienes y Servicios Zona Franca S.A. (Zona Franca de Cartagena),Zona franca,,Zona franca (Colombia),Colombia (zonas francas),Zonas francas de Colombia
+Promotora Nacional de Zona Francas S.A. (Zona Franca de Ríonegro),Zona franca,,Zona franca (Colombia),Colombia (zonas francas),Zonas francas de Colombia
+Zona Franca Permanente la Cayena,Zona franca,,Zona franca (Colombia),Colombia (zonas francas),Zonas francas de Colombia
+Aruba,País,ABW,Coincidencia automática,América,Caribe
+Argelia,País,DZA,Coincidencia automática,África,África del Norte
+Belarus,País,BLR,Equivalencia manual,Europa,Europa Oriental
+Islandia,País,ISL,Coincidencia automática,Europa,Europa del Norte
+Omán,País,OMN,Coincidencia automática,Asia,Asia Occidental
+San Cristóbal Y Nieves,País,KNA,Coincidencia automática,América,Caribe
+Senegal,País,SEN,Coincidencia automática,África,África Occidental
+Sociedad Operadora Zona Franca Industrial de Bienes y Servicios de Barranquilla S.A.,Zona franca,,Zona franca (Colombia),Colombia (zonas francas),Zonas francas de Colombia
+Zona Franca Internacional del Atlantico,Zona franca,,Zona franca (Colombia),Colombia (zonas francas),Zonas francas de Colombia
+Otros,País,,Sin identificar,Sin identificar,Sin identificar
+Albania,País,ALB,Coincidencia automática,Europa,Europa Meridional
+Armenia,País,ARM,Coincidencia automática,Asia,Asia Occidental
+Burkina Faso,País,BFA,Coincidencia automática,África,África Occidental
+Bahrein,País,BHR,Equivalencia manual,Asia,Asia Occidental
+Cocos Islas,País,CCK,Equivalencia manual,Oceanía,Australia y Nueva Zelanda
+Corea del Norte,País,PRK,Coincidencia automática,Asia,Asia Oriental
+Chipre,País,CYP,Coincidencia automática,Asia,Asia Occidental
+Gambia,País,GMB,Coincidencia automática,África,África Occidental
+Ghana,País,GHA,Coincidencia automática,África,África Occidental
+Haití,País,HTI,Coincidencia automática,América,Caribe
+Irán,País,IRN,Coincidencia automática,Asia,Asia Meridional
+Jamaica,País,JAM,Coincidencia automática,América,Caribe
+Kazajstán,País,KAZ,Equivalencia manual,Asia,Asia Central
+Laos,País,LAO,Coincidencia automática,Asia,Sudeste Asiático
+Macao,País,MAC,Coincidencia automática,Asia,Asia Oriental
+Madagascar,País,MDG,Coincidencia automática,África,África Oriental
+Malawi,País,MWI,Equivalencia manual,África,África Oriental
+Moldavia,País,MDA,Coincidencia automática,Europa,Europa Oriental
+Mongolia,País,MNG,Coincidencia automática,Asia,Asia Oriental
+Monaco,País,MCO,Coincidencia automática,Europa,Europa Occidental
+Namibia,País,NAM,Coincidencia automática,África,África Austral
+Nauru,País,NRU,Coincidencia automática,Oceanía,Micronesia
+Niger,País,NER,Coincidencia automática,África,África Occidental
+Nueva Caledonia,País,NCL,Coincidencia automática,Oceanía,Melanesia
+Pitcairn Isla,País,PCN,Equivalencia manual,Oceanía,Polinesia
+Seychelles,País,SYC,Coincidencia automática,África,África Oriental
+Sierra Leona,País,SLE,Coincidencia automática,África,África Occidental
+Swasilandia,País,SWZ,Equivalencia manual,África,África Austral
+Territorio Británico Océano Índico,País,IOT,Equivalencia manual,África,África Oriental
+Tokelau,País,TKL,Coincidencia automática,Oceanía,Polinesia
+Vírgenes Islas (Estados Unido,País,VIR,Equivalencia manual,América,Caribe
+Sociedad Operadora Zona Franca Industrial de Bienes y Servicios Sofraza  S.A. (Zona Franca de Santa Marta),Zona franca,,Zona franca (Colombia),Colombia (zonas francas),Zonas francas de Colombia
+Zona Franca de la Candelaria. Centro Internacional Cartagena de Indias.,Zona franca,,Zona franca (Colombia),Colombia (zonas francas),Zonas francas de Colombia
+Zona Franca de Bogotá S.A.,Zona franca,,Zona franca (Colombia),Colombia (zonas francas),Zonas francas de Colombia
+Zona Franca del Eje Cafetero,Zona franca,,Zona franca (Colombia),Colombia (zonas francas),Zonas francas de Colombia
+Zona Franca Permanente Intexmoda,Zona franca,,Zona franca (Colombia),Colombia (zonas francas),Zonas francas de Colombia
+Zona Franca las Americas,Zona franca,,Zona franca (Colombia),Colombia (zonas francas),Zonas francas de Colombia
+Zona Franca permanente Especial Refineria de Cartagena,Zona franca,,Zona franca (Colombia),Colombia (zonas francas),Zonas francas de Colombia
+Zona Franca Parque Central (Cartagena),Zona franca,,Zona franca (Colombia),Colombia (zonas francas),Zonas francas de Colombia
+Zona Franca Cencauca,Zona franca,,Zona franca (Colombia),Colombia (zonas francas),Zonas francas de Colombia
+Lesotho,País,LSO,Equivalencia manual,África,África Austral
+Isla Navidad,País,CXR,Equivalencia manual,Oceanía,Australia y Nueva Zelanda
+Reunión,País,REU,Coincidencia automática,África,África Oriental
+Ciudadela Internacional del Pacífico (Zona Franca del Pacífico),Zona franca,,Zona franca (Colombia),Colombia (zonas francas),Zonas francas de Colombia
+Zona Franca Tayrona s.a.,Zona franca,,Zona franca (Colombia),Colombia (zonas francas),Zonas francas de Colombia
+Zona Franca de Occidente (Mosquera),Zona franca,,Zona franca (Colombia),Colombia (zonas francas),Zonas francas de Colombia
+Zona Franca Permanente de Tocancipa,Zona franca,,Zona franca (Colombia),Colombia (zonas francas),Zonas francas de Colombia
+Tanzania,País,TZA,Coincidencia automática,África,África Oriental
+Afganistan,País,AFG,Coincidencia automática,Asia,Asia Meridional
+San Vicente Y Las Granadinas,País,VCT,Coincidencia automática,América,Caribe
+Sociedad Operadora Zona Franca Industrial de Bienes y Servicios de Palmaseca,Zona franca,,Zona franca (Colombia),Colombia (zonas francas),Zonas francas de Colombia
+Zona Franca permanente Especial Bioenergy (Meta),Zona franca,,Zona franca (Colombia),Colombia (zonas francas),Zonas francas de Colombia
+Liberia,País,LBR,Coincidencia automática,África,África Occidental
+Dominica,País,DMA,Coincidencia automática,América,Caribe
+Líbano,País,LBN,Coincidencia automática,Asia,Asia Occidental
+Qatar,País,QAT,Equivalencia manual,Asia,Asia Occidental
+Belice,País,BLZ,Coincidencia automática,América,Centroamérica y México
+Benín,País,BEN,Coincidencia automática,África,África Occidental
+Gabón,País,GAB,Coincidencia automática,África,África Central
+Mozambique,País,MOZ,Coincidencia automática,África,África Oriental
+Niue Isla,País,NIU,Equivalencia manual,Oceanía,Polinesia
+Samoa,País,WSM,Coincidencia automática,Oceanía,Polinesia
+San Marino,País,SMR,Coincidencia automática,Europa,Europa Meridional
+Sudán,País,SDN,Coincidencia automática,África,África del Norte
+Zona Franca permanente Especial Colombiana del Cauca,Zona franca,,Zona franca (Colombia),Colombia (zonas francas),Zonas francas de Colombia
+Azerbaiján,País,AZE,Equivalencia manual,Asia,Asia Occidental
+Surinam,País,SUR,Coincidencia automática,América,Suramérica
+Zona Franca permanente Especial Ecodiesel Colombia S.A.,Zona franca,,Zona franca (Colombia),Colombia (zonas francas),Zonas francas de Colombia
+Barbados,País,BRB,Coincidencia automática,América,Caribe
+Mauritania,País,MRT,Coincidencia automática,África,África Occidental
+Vírgenes Islas (Reino Unido),País,VGB,Equivalencia manual,América,Caribe
+Polinesia Francesa,País,PYF,Coincidencia automática,Oceanía,Polinesia
+Bahamas,País,BHS,Coincidencia automática,América,Caribe
+Bermudas,País,BMU,Coincidencia automática,América,Norteamérica
+Camerún,País,CMR,Coincidencia automática,África,África Central
+Eritrea,País,ERI,Coincidencia automática,África,África Oriental
+Marshall Islas,País,MHL,Equivalencia manual,Oceanía,Micronesia
+Santo Tomé Y Príncipe,País,STP,Coincidencia automática,África,África Central
+Tuvalu,País,TUV,Coincidencia automática,Oceanía,Polinesia
+Fidji,País,FJI,Equivalencia manual,Oceanía,Melanesia
+Brunéi Darussalam,País,BRN,Equivalencia manual,Asia,Sudeste Asiático
+Angola,País,AGO,Coincidencia automática,África,África Central
+Tonga,País,TON,Coincidencia automática,Oceanía,Polinesia
+Zona Franca Santander,Zona franca,,Zona franca (Colombia),Colombia (zonas francas),Zonas francas de Colombia
+Turkmenistán,País,TKM,Coincidencia automática,Asia,Asia Central
+Nepal,País,NPL,Coincidencia automática,Asia,Asia Meridional
+Zimbabwe,País,ZWE,Equivalencia manual,África,África Oriental
+Antigua Y Barbuda,País,ATG,Coincidencia automática,América,Caribe
+República Del Congo,País,COG,Coincidencia automática,África,África Central
+Montserrat Isla,País,MSR,Equivalencia manual,América,Caribe
+Siria,País,SYR,Coincidencia automática,Asia,Asia Occidental
+Uganda,País,UGA,Coincidencia automática,África,África Oriental
+Somalia,País,SOM,Coincidencia automática,África,África Oriental

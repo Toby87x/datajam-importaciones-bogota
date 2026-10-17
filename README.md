@@ -1,6 +1,6 @@
 # Dependencia y concentración de las importaciones de Bogotá
 
-**Bogotá DataJam 2026 · Equipo ETL Importaciones Bogotá** (Fundación Universitaria Compensar)
+**Bogotá DataJam 2026 · Equipo S3D.ETL** (Fundación Universitaria Compensar)
 Integrantes: Samuel Alejandro Rodríguez Vargas (líder), Diego Mauricio Molano Castillo, Samuel Andrés Barrios Alfonso.
 
 ## Problema abordado
