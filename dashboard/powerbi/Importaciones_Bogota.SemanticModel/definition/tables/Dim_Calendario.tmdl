@@ -1,0 +1,70 @@
+table Dim_Calendario
+	dataCategory: Time
+	lineageTag: fd93f6bc-f9e5-418c-b1f2-8add9c327045
+
+	column Fecha
+		dataType: dateTime
+		isHidden
+		isKey
+		formatString: dd/mm/yyyy
+		lineageTag: 19d49513-7b21-4135-9bc8-c0900d3053ff
+		summarizeBy: none
+		sourceColumn: Fecha
+
+		annotation SummarizationSetBy = Automatic
+
+	column Anio
+		dataType: int64
+		formatString: 0
+		lineageTag: e98714e5-03ef-44db-821c-13507a111d0a
+		summarizeBy: none
+		sourceColumn: Anio
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d2c53afe-dae5-4f15-8be8-d98d674478a9
+		summarizeBy: none
+		sourceColumn: Mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nombre_Mes
+		dataType: string
+		lineageTag: 8dc5b228-b851-4446-a7ce-3dc44d31fc6e
+		summarizeBy: none
+		sourceColumn: Nombre_Mes
+		sortByColumn: Mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes_Abrev
+		dataType: string
+		lineageTag: c34b1f2c-ddd5-47e7-8cd2-4174a073fe24
+		summarizeBy: none
+		sourceColumn: Mes_Abrev
+		sortByColumn: Mes
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Calendario = m
+		mode: import
+		source = ```
+				let
+				    Inicio = #date(2025, 1, 1),
+				    Fin = #date(2026, 12, 31),
+				    Fechas = List.Dates(Inicio, Duration.Days(Fin - Inicio) + 1, #duration(1, 0, 0, 0)),
+				    Tabla = Table.FromList(Fechas, Splitter.SplitByNothing(), {"Fecha"}),
+				    Anio = Table.AddColumn(Tabla, "Anio", each Date.Year([Fecha]), Int64.Type),
+				    Mes = Table.AddColumn(Anio, "Mes", each Date.Month([Fecha]), Int64.Type),
+				    Meses = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"},
+				    NombreMes = Table.AddColumn(Mes, "Nombre_Mes", each Meses{[Mes] - 1}, type text),
+				    Abrev = Table.AddColumn(NombreMes, "Mes_Abrev", each Text.Start([Nombre_Mes], 3), type text),
+				    Tipos = Table.TransformColumnTypes(Abrev, {{"Fecha", type datetime}})
+				in
+				    Tipos
+			```
+

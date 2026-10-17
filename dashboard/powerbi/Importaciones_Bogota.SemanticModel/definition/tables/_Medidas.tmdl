@@ -1,0 +1,121 @@
+table _Medidas
+	lineageTag: 1f376990-3bc8-468d-9e1d-35c09861fa96
+
+	/// Valor CIF importado (USD)
+	measure 'CIF Total' = SUM ( Fact_Importaciones[Dolares_CIF] )
+		formatString: $ #,0
+		lineageTag: a57ce585-d731-4a98-8f6c-bc3b11de76be
+
+	/// Valor FOB importado (USD); ignora los FOB nulos
+	measure 'FOB Total' = SUM ( Fact_Importaciones[Dolares_FOB] )
+		formatString: $ #,0
+		lineageTag: 1557a031-7c7c-4c78-b24c-4cf419d4141a
+
+	/// CIF - FOB solo en filas con FOB informado
+	measure 'Flete y Seguro' = SUMX ( FILTER ( Fact_Importaciones, NOT ISBLANK ( Fact_Importaciones[Dolares_FOB] ) ), Fact_Importaciones[Dolares_CIF] - Fact_Importaciones[Dolares_FOB] )
+		formatString: $ #,0
+		lineageTag: 4508095a-4639-467b-b8ee-01fb38148524
+
+	/// Peso del flete y seguro sobre el CIF
+	measure '% Flete' = DIVIDE ( [Flete y Seguro], [CIF Total] )
+		formatString: 0.0 %
+		lineageTag: 9144f5fa-a500-4dc8-a52c-77c2613f164e
+
+	/// Peso neto importado
+	measure 'Kilogramos Netos' = SUM ( Fact_Importaciones[Kilogramos_Neto] )
+		formatString: #,0
+		lineageTag: b01cc1fb-98f4-4c06-857d-c506732f4966
+
+	/// Valor CIF por kilogramo
+	measure 'USD por Kg' = DIVIDE ( [CIF Total], [Kilogramos Netos] )
+		formatString: $ #,0.00
+		lineageTag: 3a7d2bc4-93f6-45cc-bbf8-57d6d4108e61
+
+	/// Número de registros de importación
+	measure 'Registros' = COUNTROWS ( Fact_Importaciones )
+		formatString: #,0
+		lineageTag: d5bacf0d-4f72-4673-9573-982377e9f5cd
+
+	/// Países y zonas francas proveedores
+	measure 'Origenes' = DISTINCTCOUNT ( Fact_Importaciones[Cod_Orig] )
+		formatString: #,0
+		lineageTag: 250f5c60-dce1-46d8-91af-62c4cae2b9e3
+
+	/// CIF del último año en contexto
+	measure 'CIF Año Actual' = VAR a = MAX ( Dim_Calendario[Anio] ) RETURN CALCULATE ( [CIF Total], Dim_Calendario[Anio] = a )
+		formatString: $ #,0
+		lineageTag: 3d250829-cd48-4697-ae39-a5cc91f5938e
+
+	/// CIF del mismo periodo del año anterior
+	measure 'CIF Año Anterior' = VAR a = MAX ( Dim_Calendario[Anio] ) RETURN CALCULATE ( [CIF Total], Dim_Calendario[Anio] = a - 1 )
+		formatString: $ #,0
+		lineageTag: cd5d3354-ae49-443b-b552-21f443affdf9
+
+	/// Ene-Feb 2026 frente a Ene-Feb 2025
+	measure 'Var. Interanual %' = DIVIDE ( [CIF Año Actual] - [CIF Año Anterior], [CIF Año Anterior] )
+		formatString: +0.0 %;-0.0 %;0.0 %
+		lineageTag: 78479a7a-162f-458f-8ce1-2cb0ce38b8f5
+
+	/// Participación del origen en el CIF total
+	measure '% Participacion' = DIVIDE ( [CIF Total], CALCULATE ( [CIF Total], ALL ( Dim_Origen ) ) )
+		formatString: 0.0 %
+		lineageTag: ebcb0c8c-4d67-4afc-91a6-7dfe0851db30
+
+	/// Proporción del CIF en alta tecnología
+	measure '% Alta Tecnologia' = DIVIDE ( CALCULATE ( [CIF Total], Dim_Nivel_Tecnologico[Nivel_Tecnologico] = "Manufacturas de alta tecnología" ), [CIF Total] )
+		formatString: 0.0 %
+		lineageTag: c9f725eb-5673-4453-93b7-4c8b823248a9
+
+	/// Valor CIF en pesos colombianos (CIF USD x TRM del mes)
+	measure 'CIF Pesos' = SUM ( Fact_Importaciones[Pesos_CIF] )
+		formatString: $ #,0
+		lineageTag: 4eb9eaed-e639-43b7-9e70-1b104ed5bbea
+
+	/// TRM promedio ponderada por el valor importado
+	measure 'TRM Promedio' = DIVIDE ( [CIF Pesos], [CIF Total] )
+		formatString: #,0.00
+		lineageTag: 13e6f24a-aa1c-4c92-ae35-d0bbe871e578
+
+	/// CIF en pesos del último año en contexto
+	measure 'CIF Pesos Año Actual' = VAR a = MAX ( Dim_Calendario[Anio] ) RETURN CALCULATE ( [CIF Pesos], Dim_Calendario[Anio] = a )
+		formatString: $ #,0
+		lineageTag: ddae218f-ed5e-4fa5-8df0-57142c5103e2
+
+	/// CIF en pesos del año anterior
+	measure 'CIF Pesos Año Anterior' = VAR a = MAX ( Dim_Calendario[Anio] ) RETURN CALCULATE ( [CIF Pesos], Dim_Calendario[Anio] = a - 1 )
+		formatString: $ #,0
+		lineageTag: 89b8588a-74e1-402e-b3e1-2254ea8c0a61
+
+	/// Variación del valor importado medido en pesos
+	measure 'Var. Interanual COP %' = DIVIDE ( [CIF Pesos Año Actual] - [CIF Pesos Año Anterior], [CIF Pesos Año Anterior] )
+		formatString: +0.0 %;-0.0 %;0.0 %
+		lineageTag: 9d106f2b-bc32-46c1-9be6-1bb2b1a6e4dd
+
+	/// Índice Herfindahl-Hirschman de concentración por país (0-10.000)
+	measure 'IHH Paises' = VAR t = CALCULATE ( [CIF Total], Dim_Origen[Tipo_Origen] = "País" ) RETURN SUMX ( CALCULATETABLE ( VALUES ( Dim_Origen[Origen] ), Dim_Origen[Tipo_Origen] = "País" ), ( DIVIDE ( [CIF Total], t ) * 100 ) ^ 2 )
+		formatString: #,0
+		lineageTag: 45c2bfbb-7a69-420f-a1ae-e384a9b4723c
+
+	/// Posición del origen por CIF
+	measure 'Ranking Origen' = IF ( HASONEVALUE ( Dim_Origen[Origen] ), RANKX ( ALL ( Dim_Origen[Origen] ), [CIF Total] ) )
+		formatString: 0
+		lineageTag: b3964773-6b6f-42e3-a790-e761985b48ed
+
+	column Aux
+		dataType: string
+		isHidden
+		lineageTag: 396d2460-2971-498b-b593-fe4415bb9faf
+		summarizeBy: none
+		sourceColumn: Aux
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Medidas = m
+		mode: import
+		source = ```
+				let
+				    Origen = #table(type table [Aux = text], {})
+				in
+				    Origen
+			```
+

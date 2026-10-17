@@ -1,0 +1,19 @@
+model Model
+	culture: es-CO
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-CO
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+ref table Fact_Importaciones
+ref table Dim_Origen
+ref table Dim_Partida
+ref table Dim_CIIU
+ref table Dim_Nivel_Tecnologico
+ref table Dim_Uso
+ref table Dim_Calendario
+ref table _Medidas
+

@@ -1,0 +1,39 @@
+table Dim_CIIU
+	lineageTag: a5e4fd81-2333-48bf-9321-e47987a77002
+
+	column Cod_CIIU
+		dataType: string
+		isHidden
+		lineageTag: d5085949-a93f-4570-9179-ee144878bfaa
+		summarizeBy: none
+		sourceColumn: Cod_CIIU
+
+		annotation SummarizationSetBy = Automatic
+
+	column Descripcion_CIIU
+		dataType: string
+		lineageTag: 85fff0cf-6253-4e05-9d43-a76ba2ee3ebd
+		summarizeBy: none
+		sourceColumn: Descripcion_CIIU
+
+		annotation SummarizationSetBy = Automatic
+
+	column Actividad_CIIU
+		dataType: string
+		lineageTag: 80f4b3ca-e2f4-4eac-9a9c-d08f71a12db5
+		summarizeBy: none
+		sourceColumn: Actividad_CIIU
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_CIIU = m
+		mode: import
+		source = ```
+				let
+				    Columnas = Table.SelectColumns(Importaciones_Base, {"Cod_CIIU", "Descripcion_CIIU"}),
+				    Unicos = Table.Distinct(Columnas, {"Cod_CIIU"}),
+				    Etiqueta = Table.AddColumn(Unicos, "Actividad_CIIU", each [Cod_CIIU] & " · " & (if Text.Length([Descripcion_CIIU]) > 50 then Text.Start([Descripcion_CIIU], 50) & "…" else [Descripcion_CIIU]), type text)
+				in
+				    Etiqueta
+			```
+

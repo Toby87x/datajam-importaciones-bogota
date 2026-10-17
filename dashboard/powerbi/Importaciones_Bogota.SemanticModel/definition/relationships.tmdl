@@ -1,0 +1,24 @@
+relationship d35aa026-7b63-4d72-bdd9-867fdd956ef6
+	fromColumn: Fact_Importaciones.Cod_Orig
+	toColumn: Dim_Origen.Cod_Orig
+
+relationship 7f4193d2-a868-4159-89aa-9caddf45bdc3
+	fromColumn: Fact_Importaciones.Cod_Partida
+	toColumn: Dim_Partida.Cod_Partida
+
+relationship 7ebcc2c8-9ce9-4d62-ac27-3ef14d978e1b
+	fromColumn: Fact_Importaciones.Cod_CIIU
+	toColumn: Dim_CIIU.Cod_CIIU
+
+relationship a07482e4-7baf-46bb-8164-2a6916953a57
+	fromColumn: Fact_Importaciones.Nivel_Tecnologico
+	toColumn: Dim_Nivel_Tecnologico.Nivel_Tecnologico
+
+relationship 5512be61-b89e-407c-abf4-d34f19bcb0f1
+	fromColumn: Fact_Importaciones.Detalle_Uso
+	toColumn: Dim_Uso.Detalle_Uso
+
+relationship c1674b81-b877-4dcb-95ff-b4efe4a2dc85
+	fromColumn: Fact_Importaciones.Fecha
+	toColumn: Dim_Calendario.Fecha
+

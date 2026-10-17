@@ -1,0 +1,5 @@
+# Power BI: caché y configuración local (se regeneran al actualizar)
+**/.pbi/cache.abf
+**/.pbi/localSettings.json
+__pycache__/
+.ipynb_checkpoints/

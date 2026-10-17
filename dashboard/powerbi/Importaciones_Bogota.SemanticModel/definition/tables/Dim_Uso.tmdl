@@ -1,0 +1,40 @@
+table Dim_Uso
+	lineageTag: fb5fc580-3834-460e-a2d2-2f40ba701c86
+
+	column Detalle_Uso
+		dataType: string
+		lineageTag: 094936fb-460d-4948-bfba-8e2164910567
+		summarizeBy: none
+		sourceColumn: Detalle_Uso
+
+		annotation SummarizationSetBy = Automatic
+
+	column Uso_Economico
+		dataType: string
+		lineageTag: 12a412d9-e90c-417c-81da-f584868a593b
+		summarizeBy: none
+		sourceColumn: Uso_Economico
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Uso - Detalle'
+		lineageTag: 8924312a-3619-429a-b3ec-0a83b225d323
+
+		level Uso
+			lineageTag: 4c3a7688-a92e-4717-b331-8c22e50acbe9
+			column: Uso_Economico
+
+		level Detalle
+			lineageTag: a0decf96-bb32-47aa-bbc3-33e669d5f424
+			column: Detalle_Uso
+
+	partition Dim_Uso = m
+		mode: import
+		source = ```
+				let
+				    Columnas = Table.SelectColumns(Importaciones_Base, {"Detalle_Uso", "Uso_Economico"}),
+				    Unicos = Table.Distinct(Columnas, {"Detalle_Uso"})
+				in
+				    Unicos
+			```
+

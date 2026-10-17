@@ -1,0 +1,89 @@
+table Dim_Origen
+	lineageTag: 65bb4d15-e460-4210-8bdc-e754454dfd7a
+
+	column Cod_Orig
+		dataType: string
+		isHidden
+		lineageTag: e7a804d4-23e9-4342-adbd-1010878fb823
+		summarizeBy: none
+		sourceColumn: Cod_Orig
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pais_Origen
+		dataType: string
+		isHidden
+		lineageTag: 9f416a12-2c77-4f99-9790-c3d100234b5a
+		summarizeBy: none
+		sourceColumn: Pais_Origen
+
+		annotation SummarizationSetBy = Automatic
+
+	column Origen
+		dataType: string
+		lineageTag: 0519faea-9463-4cba-b128-a4f7cb43263d
+		summarizeBy: none
+		sourceColumn: Origen
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tipo_Origen
+		dataType: string
+		lineageTag: d517eb0b-7ed5-4a64-9093-fd638b3b26f2
+		summarizeBy: none
+		sourceColumn: Tipo_Origen
+
+		annotation SummarizationSetBy = Automatic
+
+	column ISO3
+		dataType: string
+		lineageTag: ec9ce9e9-4911-45f0-8a45-9456b7c71756
+		summarizeBy: none
+		sourceColumn: ISO3
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 5e3d5138-e914-4f24-a978-29dc2d92f0f0
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Subregion
+		dataType: string
+		lineageTag: 1de4ff95-a146-4387-8ea3-92ab1204c939
+		summarizeBy: none
+		sourceColumn: Subregion
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Region - Pais'
+		lineageTag: 99b2b284-8dc1-4372-881e-969f466e5e25
+
+		level Region
+			lineageTag: 3db94fee-3c51-4a96-9fe8-1cd014cd7f5c
+			column: Region
+
+		level Subregion
+			lineageTag: d4772fe9-6450-498b-b15c-070174ef631a
+			column: Subregion
+
+		level Pais
+			lineageTag: 6e60d5f5-7251-479c-b392-81faa89bf444
+			column: Origen
+
+	partition Dim_Origen = m
+		mode: import
+		source = ```
+				let
+				    // Origen + región ONU M49 (fuente 3), integrados por código ISO alfa-3 en el notebook
+				    Columnas = Table.SelectColumns(Importaciones_Base, {"Cod_Orig", "Pais_Origen", "Tipo_Origen", "ISO3", "Region", "Subregion"}),
+				    Unicos = Table.Distinct(Columnas, {"Cod_Orig"}),
+				    // "Otros" agrupa 10 códigos distintos: se etiqueta con su código para no fusionarlos
+				    Etiqueta = Table.AddColumn(Unicos, "Origen", each if [Pais_Origen] = "Otros" then "Otros (cód. " & [Cod_Orig] & ")" else [Pais_Origen], type text)
+				in
+				    Etiqueta
+			```
+

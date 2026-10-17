@@ -1,0 +1,46 @@
+expression CarpetaRepo = "C:\Users\SamuelAlejandroRodri\Desktop\datajam-importaciones-bogota\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 06697cf4-35cb-4c82-a157-b86f9d5b9295
+
+	annotation PBI_ResultType = Text
+
+expression Importaciones_Base = ```
+		let
+		    // 1. Extracción: salida del notebook notebooks/01_etl_integracion_importaciones.ipynb
+		    //    (Importaciones SDDE + TRM Superfinanciera + regiones ONU M49 ya integradas)
+		    Archivo = Binary.Decompress(File.Contents(CarpetaRepo & "data\processed\importaciones_integrado.csv.gz"), Compression.GZip),
+		    Origen = Csv.Document(Archivo, [Delimiter = ",", Columns = 25, Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+		    Encabezados = Table.PromoteHeaders(Origen, [PromoteAllScalars = true]),
+		    // 2. Nombres de columna sin espacios ni tildes
+		    Renombradas = Table.RenameColumns(Encabezados, {
+		        {"Periodo", "Anio"}, {"Codigo pais origen", "Cod_Orig"}, {"Pais de origen", "Pais_Origen"}, {"Tipo origen", "Tipo_Origen"},
+		        {"alpha3", "ISO3"}, {"Codigo partida", "Cod_Partida"}, {"Nombre partida", "Partida"}, {"Codigo ciiu rev4", "Cod_CIIU"},
+		        {"Descripcion ciiu rev4", "Descripcion_CIIU"}, {"Codigo capitulo", "Cod_Capitulo"}, {"Nombre capitulo", "Capitulo"},
+		        {"Nivel tecnologico", "Nivel_Tecnologico"}, {"Uso economico", "Uso_Economico"}, {"Detalle uso economico", "Detalle_Uso"},
+		        {"Dolares CIF", "Dolares_CIF"}, {"Dolares FOB", "Dolares_FOB"}, {"Kilogramos netos", "Kilogramos_Neto"}, {"Pesos CIF", "Pesos_CIF"}}),
+		    // 3. Tipos de dato: códigos como TEXTO; números con punto decimal (cultura en-US)
+		    Tipos = Table.TransformColumnTypes(Renombradas, {
+		        {"Anio", Int64.Type}, {"Mes", Int64.Type}, {"Fecha", type date}, {"Cod_Orig", type text}, {"Pais_Origen", type text},
+		        {"Tipo_Origen", type text}, {"ISO3", type text}, {"Region", type text}, {"Subregion", type text},
+		        {"Cod_Partida", type text}, {"Partida", type text}, {"Cod_CIIU", type text}, {"Descripcion_CIIU", type text},
+		        {"Cod_Capitulo", type text}, {"Capitulo", type text}, {"Nivel_Tecnologico", type text}, {"Uso_Economico", type text},
+		        {"Detalle_Uso", type text}, {"Dolares_CIF", type number}, {"Dolares_FOB", type number}, {"Kilogramos_Neto", type number},
+		        {"Cantidad", type number}, {"TRM", type number}, {"Pesos_CIF", type number}, {"Validacion", type text}}, "en-US"),
+		    // 4. Ceros a la izquierda en códigos (ej. CIIU 0128)
+		    CerosIzquierda = Table.TransformColumns(Tipos, {
+		        {"Cod_CIIU", each Text.PadStart(_, 4, "0"), type text},
+		        {"Cod_Partida", each Text.PadStart(_, 4, "0"), type text},
+		        {"Cod_Capitulo", each Text.PadStart(_, 2, "0"), type text}}),
+		    // 5. Nivel tecnológico vacío -> etiqueta visible "Sin clasificar"
+		    NivelVacio = Table.ReplaceValue(CerosIzquierda, "", null, Replacer.ReplaceValue, {"Nivel_Tecnologico"}),
+		    NivelSinClasificar = Table.ReplaceValue(NivelVacio, null, "Sin clasificar", Replacer.ReplaceValue, {"Nivel_Tecnologico"}),
+		    // 6. Llave sustituta de la tabla de hechos
+		    Indice = Table.AddIndexColumn(NivelSinClasificar, "ID_Import", 1, 1, Int64.Type)
+		in
+		    Indice
+	```
+	lineageTag: 0c7451f6-96c4-43ff-89f8-e419a98dcf7c
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegación
+

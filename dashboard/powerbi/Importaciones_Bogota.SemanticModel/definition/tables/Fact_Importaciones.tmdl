@@ -1,0 +1,175 @@
+table Fact_Importaciones
+	lineageTag: 6db61653-0e15-426b-be56-a159049677a8
+
+	column ID_Import
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 36bcf0e9-ee07-4d16-846b-236a11fa0e60
+		summarizeBy: none
+		sourceColumn: ID_Import
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fecha
+		dataType: dateTime
+		isHidden
+		formatString: dd/mm/yyyy
+		lineageTag: 2a87b094-1485-4807-8150-7081057a9dea
+		summarizeBy: none
+		sourceColumn: Fecha
+
+		annotation SummarizationSetBy = Automatic
+
+	column Anio
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 03468ee4-3056-485e-af71-7484239e1d6c
+		summarizeBy: none
+		sourceColumn: Anio
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 0108d6f8-37a0-459b-ba1a-dbab20b4dd17
+		summarizeBy: none
+		sourceColumn: Mes
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cod_Orig
+		dataType: string
+		isHidden
+		lineageTag: 9f6e2fd4-dd30-4975-8829-7e26dbb23150
+		summarizeBy: none
+		sourceColumn: Cod_Orig
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cod_Partida
+		dataType: string
+		isHidden
+		lineageTag: a8997be8-505b-4380-827c-b04864c2f4d3
+		summarizeBy: none
+		sourceColumn: Cod_Partida
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cod_CIIU
+		dataType: string
+		isHidden
+		lineageTag: 77e2db4e-b95b-4a6f-8f73-a990ff2604d2
+		summarizeBy: none
+		sourceColumn: Cod_CIIU
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nivel_Tecnologico
+		dataType: string
+		isHidden
+		lineageTag: a4f69531-10d7-4992-92c1-a8f550c1a774
+		summarizeBy: none
+		sourceColumn: Nivel_Tecnologico
+
+		annotation SummarizationSetBy = Automatic
+
+	column Detalle_Uso
+		dataType: string
+		isHidden
+		lineageTag: 866c7334-06b2-48c4-bb28-502d3f59d5f1
+		summarizeBy: none
+		sourceColumn: Detalle_Uso
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dolares_CIF
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: f6b1a37e-f0be-4c05-a2a6-c429b11d3bbe
+		summarizeBy: sum
+		sourceColumn: Dolares_CIF
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dolares_FOB
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: f1004c7a-5dd9-4679-a52c-1f6e23adec99
+		summarizeBy: sum
+		sourceColumn: Dolares_FOB
+
+		annotation SummarizationSetBy = Automatic
+
+	column Kilogramos_Neto
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: b905c912-553f-4f9a-96b7-09219f23e687
+		summarizeBy: sum
+		sourceColumn: Kilogramos_Neto
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cantidad
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: 5a064abc-ff7d-47d0-85c2-f5da7f2f32c9
+		summarizeBy: sum
+		sourceColumn: Cantidad
+
+		annotation SummarizationSetBy = Automatic
+
+	column TRM
+		dataType: double
+		isHidden
+		formatString: #,0.00
+		lineageTag: 1006943e-6361-47cd-ae59-72a8d47d9872
+		summarizeBy: none
+		sourceColumn: TRM
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pesos_CIF
+		dataType: double
+		isHidden
+		formatString: #,0
+		lineageTag: 0c34df36-e81d-4d52-9fb5-743defbe8cc5
+		summarizeBy: sum
+		sourceColumn: Pesos_CIF
+
+		annotation SummarizationSetBy = Automatic
+
+	column Validacion
+		dataType: string
+		lineageTag: 3d411909-9c59-456e-8e53-8a1e22ed36a2
+		summarizeBy: none
+		sourceColumn: Validacion
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rango_CIF = SWITCH ( TRUE (), Fact_Importaciones[Dolares_CIF] < 10000, "1. Menor a 10 mil", Fact_Importaciones[Dolares_CIF] < 100000, "2. 10 mil a 100 mil", Fact_Importaciones[Dolares_CIF] < 1000000, "3. 100 mil a 1 millón", "4. Mayor a 1 millón" )
+		dataType: string
+		lineageTag: 8ab2f363-1048-4715-af7c-60d015a08d4b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_Importaciones = m
+		mode: import
+		source = ```
+				let
+				    Origen = Importaciones_Base,
+				    Columnas = Table.SelectColumns(Origen, {"ID_Import", "Fecha", "Anio", "Mes", "Cod_Orig", "Cod_Partida", "Cod_CIIU",
+				        "Nivel_Tecnologico", "Detalle_Uso", "Dolares_CIF", "Dolares_FOB", "Kilogramos_Neto", "Cantidad", "TRM", "Pesos_CIF", "Validacion"}),
+				    TipoFecha = Table.TransformColumnTypes(Columnas, {{"Fecha", type datetime}})
+				in
+				    TipoFecha
+			```
+

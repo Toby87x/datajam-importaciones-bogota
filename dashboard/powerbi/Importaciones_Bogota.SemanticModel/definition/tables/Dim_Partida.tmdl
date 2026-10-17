@@ -1,0 +1,78 @@
+table Dim_Partida
+	lineageTag: 724affbe-a6ec-4f8f-86f6-3ebb4ba20265
+
+	column Cod_Partida
+		dataType: string
+		isHidden
+		lineageTag: ef281623-deb4-4b04-ace4-7a25e218d644
+		summarizeBy: none
+		sourceColumn: Cod_Partida
+
+		annotation SummarizationSetBy = Automatic
+
+	column Partida
+		dataType: string
+		lineageTag: 6cce4135-314f-4cd8-9757-95cf5027c191
+		summarizeBy: none
+		sourceColumn: Partida
+
+		annotation SummarizationSetBy = Automatic
+
+	column Partida_Corta
+		dataType: string
+		lineageTag: 8cf444bb-ce1d-420a-a485-8c3d41ce4016
+		summarizeBy: none
+		sourceColumn: Partida_Corta
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cod_Capitulo
+		dataType: string
+		isHidden
+		lineageTag: 349fcb99-78a1-4650-a77e-eaba665c6dcd
+		summarizeBy: none
+		sourceColumn: Cod_Capitulo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Capitulo
+		dataType: string
+		isHidden
+		lineageTag: 9bfebc0a-d358-4a27-a701-69c11fc63db2
+		summarizeBy: none
+		sourceColumn: Capitulo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Capitulo_Etiqueta
+		dataType: string
+		lineageTag: 867ce810-3a71-4658-89a2-e19ec222d04f
+		summarizeBy: none
+		sourceColumn: Capitulo_Etiqueta
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Capitulo - Partida'
+		lineageTag: a9bfa716-2918-4774-9ef4-fec1d0d5e791
+
+		level Capitulo
+			lineageTag: f5bcb860-bd7f-467e-8978-ef1f42bd4ec6
+			column: Capitulo_Etiqueta
+
+		level Partida
+			lineageTag: bab55596-58d6-4024-885f-e69ca7835d5a
+			column: Partida_Corta
+
+	partition Dim_Partida = m
+		mode: import
+		source = ```
+				let
+				    Columnas = Table.SelectColumns(Importaciones_Base, {"Cod_Partida", "Partida", "Cod_Capitulo", "Capitulo"}),
+				    Unicos = Table.Distinct(Columnas, {"Cod_Partida"}),
+				    // Nombre corto para ejes (los nombres originales llegan a 839 caracteres)
+				    Corta = Table.AddColumn(Unicos, "Partida_Corta", each [Cod_Partida] & " · " & (if Text.Length([Partida]) > 45 then Text.Start([Partida], 45) & "…" else [Partida]), type text),
+				    EtiquetaCap = Table.AddColumn(Corta, "Capitulo_Etiqueta", each [Cod_Capitulo] & " · " & [Capitulo], type text)
+				in
+				    EtiquetaCap
+			```
+

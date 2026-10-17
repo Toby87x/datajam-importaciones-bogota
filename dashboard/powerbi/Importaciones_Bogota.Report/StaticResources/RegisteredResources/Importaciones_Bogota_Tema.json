@@ -1,0 +1,22 @@
+{
+  "name": "Importaciones Bogota",
+  "dataColors": [
+    "#1B3A6B",
+    "#2F7AC4",
+    "#6AA6DD",
+    "#A9CBEC",
+    "#E0712C",
+    "#7A8699",
+    "#C4C9D1",
+    "#24568F"
+  ],
+  "foreground": "#1D2433",
+  "background": "#FFFFFF",
+  "tableAccent": "#2F7AC4",
+  "textClasses": {
+    "title": {
+      "fontFace": "Segoe UI Semibold",
+      "color": "#24456F"
+    }
+  }
+}

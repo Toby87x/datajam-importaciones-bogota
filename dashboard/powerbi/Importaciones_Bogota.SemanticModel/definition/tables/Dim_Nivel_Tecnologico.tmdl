@@ -1,0 +1,35 @@
+table Dim_Nivel_Tecnologico
+	lineageTag: 53cdd0ed-ccf7-4fcf-b357-ff9feba7b370
+
+	column Nivel_Tecnologico
+		dataType: string
+		lineageTag: 7d3fe0ef-500a-416e-b414-42a601de7c64
+		summarizeBy: none
+		sourceColumn: Nivel_Tecnologico
+		sortByColumn: Orden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Orden
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5669938b-6f03-4abd-aca8-a35361fe61ed
+		summarizeBy: none
+		sourceColumn: Orden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Nivel_Tecnologico = m
+		mode: import
+		source = ```
+				let
+				    Columnas = Table.SelectColumns(Importaciones_Base, {"Nivel_Tecnologico"}),
+				    Unicos = Table.Distinct(Columnas),
+				    Orden = {"Manufacturas de alta tecnología", "Manufacturas de tecnología media", "Manufacturas de baja tecnología",
+				        "Manufacturas basadas en recursos naturales", "Bienes primarios", "Otras transacciones", "Sin clasificar"},
+				    ConOrden = Table.AddColumn(Unicos, "Orden", each let p = List.PositionOf(Orden, [Nivel_Tecnologico]) in if p < 0 then 99 else p + 1, Int64.Type)
+				in
+				    ConOrden
+			```
+
